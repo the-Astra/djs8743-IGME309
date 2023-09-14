@@ -1,10 +1,7 @@
-/*--------------------------------------------------------------------------------------------------
-This project was generated in 2018
---------------------------------------------------------------------------------------------------*/
-#ifndef __MAIN_H_
-#define __MAIN_H_
+#pragma once
+#ifndef _MAIN_H
+#define _MAIN_H
 
 #include <iostream>
-#include <windows.h>
 
-#endif //__MAIN_H_
+#endif //_MAIN_H

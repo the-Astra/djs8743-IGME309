@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EF9B5E00-F5D5-4EA6-9B4C-8C8149983517}</ProjectGuid>
-    <RootNamespace>E01_Configuration</RootNamespace>
+    <ProjectGuid>{1A4491EB-5556-4566-B419-D2DBDBFB9602}</ProjectGuid>
+    <RootNamespace>E03_Shaders</RootNamespace>
+    <ProjectName>E03</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>E01s_Configuration</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -33,8 +33,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -46,10 +44,17 @@
     <OutDir>$(SolutionDir)Z_DELETE\</OutDir>
     <IntDir>$(SolutionDir)Z_DELETE\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <ExecutablePath>$(SolutionDir)include\GL\bin;$(SolutionDir)include\SFML\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)res;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)include\GL\lib;$(SolutionDir)include\SFML\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Z_DELETE\</OutDir>
     <IntDir>$(SolutionDir)Z_DELETE\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <ExecutablePath>$(SolutionDir)include\GL\bin;$(SolutionDir)include\SFML\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)res;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)include\GL\lib;$(SolutionDir)include\SFML\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -61,11 +66,15 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glu32.lib;glew32.lib;opengl32.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)_Binary\"
-copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)_Binary"</Command>
-      <Message>Copying...</Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,18 +90,23 @@ copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)_Binary"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glu32.lib;glew32.lib;opengl32.lib;sfml-system.lib;sfml-window.lib;sfml-graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)_Binary\"
-copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)_Binary"</Command>
-      <Message>Copying...</Message>
+      <Message>Copying files...</Message>
+      <Command>copy "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)_Binary"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppClass.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ShaderCompiler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppClass.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="ShaderCompiler.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\res\ICON.rc" />
